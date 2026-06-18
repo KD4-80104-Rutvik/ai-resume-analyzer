@@ -26,19 +26,6 @@ public class OllamaService {
 		this.objectMapper = objectMapper;
 	}
 
-	public String testOllama() {
-
-		OllamaRequest request = new OllamaRequest();
-
-		request.setModel("llama3.2:1b");
-		request.setPrompt("What is Spring Boot?");
-		request.setStream(false);
-
-		OllamaResponse response = restTemplate.postForObject("http://localhost:11434/api/generate", request,
-				OllamaResponse.class);
-
-		return response.getResponse();
-	}
 
 	public AnalysisResult analyzeResume(String resumeText, String jobDescription, List<String> missingSkills)
 			throws JsonMappingException, JsonProcessingException {

@@ -1,20 +1,13 @@
 package com.airesume.analyzer.controller;
 
-import java.util.List;
-
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.airesume.analyzer.dto.AnalysisRequest;
 import com.airesume.analyzer.dto.AnalysisResponse;
 import com.airesume.analyzer.service.AnalysisService;
 
@@ -27,32 +20,6 @@ public class AnalysisController {
 	public AnalysisController(AnalysisService analysisService) {
 
 		this.analysisService = analysisService;
-	}
-
-	@PostMapping
-	public ResponseEntity<AnalysisResponse> createAnalysis(@RequestBody AnalysisRequest request) {
-
-		return ResponseEntity.ok(analysisService.createAnalysis(request));
-	}
-
-	@GetMapping
-	public ResponseEntity<List<AnalysisResponse>> getAllAnalyses() {
-
-		return ResponseEntity.ok(analysisService.getAllAnalyses());
-	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<AnalysisResponse> getAnalysisById(@PathVariable Long id) {
-
-		return ResponseEntity.ok(analysisService.getAnalysisById(id));
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteAnalysis(@PathVariable Long id) {
-
-		analysisService.deleteAnalysis(id);
-
-		return ResponseEntity.ok("Analysis deleted successfully");
 	}
 
 	@PostMapping(value = "/resume", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
